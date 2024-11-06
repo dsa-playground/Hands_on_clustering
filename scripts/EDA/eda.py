@@ -63,6 +63,8 @@ def create_df_percentage(df, groupby_columns, percentage_column):
     percentage = df.groupby(groupby_columns)[percentage_column].value_counts(
         normalize=True
     )
+    if percentage.name == 'proportion':
+        percentage.name = 'Overleefd'
     df_percentage = pd.DataFrame(percentage)
     df_percentage = df_percentage * 100
     df_percentage = df_percentage.rename(
